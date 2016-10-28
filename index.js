@@ -351,9 +351,6 @@ function stationFilter(letter, word) {
       return newStations;
   }
 
-
-
-
 stationFilter(searchTerm, stations);
 
 
@@ -374,8 +371,12 @@ stationFilter(searchTerm, stations);
 //
 //      "abc".split('').reverse().join('') --> "cba"
 
-function reverse(){
-
+function reverse(str){
+      var newString = "";
+      for (var i = str.length - 1; i >= 0; i--) {
+          newString = newString + str[i];
+      }
+      return newString;
 }
 
 console.assert(reverse('hello') === 'olleh')
