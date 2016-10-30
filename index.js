@@ -16,7 +16,6 @@ console.assert(x >= 5 && x <= 100)
 var y = randomInRange(-25, 30)
 console.assert(y >= -25 && y <= 30)
 
-
 //Question 2: Letter Counting
 
 // Write a function letterCount() that takes a
@@ -41,36 +40,34 @@ console.assert(y >= -25 && y <= 30)
 // letters should also be converted to lower
 // case when counting them.
 
-// function letterCount(str) {
-//   if (typeof str === 'undefined') {
-//     return {};
-//   } else {
-//     var counts = {};
-//     for (var i = 0; i < str.length; i++) {
-//         var currentLetter = str[i];
-//         if (counts [currentLetter]) { //if seen before
-//             counts [currentLetter] = counts [currentLetter] + 1;
-//         } else { //seen for first time
-//             counts [currentLetter] = 1;
-//         }
-//       }
-//     }
-//     return counts;
-// }
-//
-// console.log(letterCount("jaksdhfjafdsjkhjwae"));
-//
-//     console.assert(letterCount("abcabcabcdefab c a oo ija ;a ;skmdals kn").b === 4)
-//     console.assert(letterCount().z === undefined)
-//
+function letterCount(str) {
+  if (typeof str === 'undefined') {
+    return {};
+  } else {
+    var counts = {};
+    for (var i = 0; i < str.length; i++) {
+        var currentLetter = str[i];
+        if (counts [currentLetter]) { //if seen before
+            counts [currentLetter] = counts [currentLetter] + 1;
+        } else { //seen for first time
+            counts [currentLetter] = 1;
+        }
+      }
+    }
+    return counts;
+}
+
+console.log(letterCount("jaksdhfjafdsjkhjwae"));
+
+    console.assert(letterCount("abcabcabcdefab c a oo ija ;a ;skmdals kn").b === 4)
+    console.assert(letterCount().z === undefined)
 
 
 //Question 3: Sorting Blacklisted Mackerel
 
-
 // Use JavaScript's string and array functions to write out a function that returns
 // an array with only tube stations that don't contain any letters from the word "mackerel":
-
+//
 var searchTerm = "mackerel";
 var stations = [
  "Baker Street",
@@ -335,24 +332,24 @@ var stations = [
 ];
 
 function stationFilter(letter, word) {
-  var newStations = [];
-  for (var i = 0; i < word.length; i++) {
-    var wordPasses = true;
-    for (var j = 0; j < letter.length; j++) {
-              var blacklistedLetter = letter[j].toUpperCase();
-              if (word[i].toUpperCase().match(blacklistedLetter)) {
-                  wordPasses = false;
-              }
-          }
-          if (wordPasses === true) {
-              newStations.push(word[i]);
-          }
-      }
-      return newStations;
-  }
+    var newStations = [];
+    for (var i = 0; i < word.length; i++) {
+        var wordPasses = {}
+        true;
+        for (var j = 0; j < letter.length; j++) {
+            var blacklistedLetter = letter[j].toUpperCase();
+            if (word[i].toUpperCase().match(blacklistedLetter)) {
+                wordPasses = false;
+            }
+        }
+        if (wordPasses === true) {
+            newStations.push(word[i]);
+        }
+    }
+    return newStations;
+}
 
 stationFilter(searchTerm, stations);
-
 
 //Question 4: String Reversal
 
@@ -371,18 +368,16 @@ stationFilter(searchTerm, stations);
 //
 //      "abc".split('').reverse().join('') --> "cba"
 
-function reverse(str){
-      var newString = "";
-      for (var i = str.length - 1; i >= 0; i--) {
-          newString = newString + str[i];
-      }
-      return newString;
+function reverse(str) {
+    var newString = "";
+    for (var i = str.length - 1; i >= 0; i--) {
+        newString = newString + str[i];
+    }
+    return newString;
 }
 
 console.assert(reverse('hello') === 'olleh')
 console.assert(reverse('hello, world') === 'dlrow ,olleh')
-
-
 
 //Question 5: String, Array, Object
 
@@ -401,11 +396,40 @@ console.assert(reverse('hello, world') === 'dlrow ,olleh')
 //     Kanye: "West"
 //   }
 //
-// function names(str) {
-//
-// }
-//
-// var results = names("George Washington, John Adams, Kanye West")
-// console.assert(results.George === "Washington")
-// console.assert(results['John'] === "Adams")
-// console.assert(results['Kanye'] === "West")
+function results(str) {
+  var newnames = {};
+  var namesAsArray = str.split(', ');
+
+  // Loop through the names string
+  for (var i = 0; i < namesAsArray.length; i++) {
+
+    // This will log out each person's name
+    // console.log(namesAsArray[i]);
+
+    var person = namesAsArray[i].split(' ')
+    // This will log out the first and last name of people as an array
+    // console.log(person);
+    // This will log out the first name
+    console.log(person[0]);
+    var firstname = (person[0]);
+
+    // And the last name!
+    console.log(person[1]);
+    var lastname = (person[1]);
+
+    //store first names as keys and last names as values in the new object
+    newnames.firstname = lastname;
+    var namesList = {};
+
+    namesList[firstname] = lastname;
+
+    return namesList;
+  }
+}
+
+console.log(results("George Washington, John Adams, Kanye West"));
+
+
+console.assert(results['George'] === "Washington")
+console.assert(results['John'] === "Adams")
+console.assert(results['Kanye'] === "West")
